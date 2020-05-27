@@ -68,14 +68,12 @@ public class RemoteService extends Service {
                 return false;
             }
             return super.onTransact(code, data, reply, flags);
-        }
-        
-         @Override
+        } 
+        @Override
         public void join(IBinder token, String name) throws RemoteException {
             CustomerClient cl = new CustomerClient(token, name);
-            mClientsList.add(cl); 
+            mClientsList.add(cl);
         }
-
 
         @Override
         public void addBook(Book book) throws RemoteException {
