@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.aidl.youlong.project.aidl.Book;
 import com.aidl.youlong.project.aidl.IBookManager;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Person person=new Person();
         Student student=new  Person().new Student();
+
     }
 
 
