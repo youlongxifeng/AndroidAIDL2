@@ -68,7 +68,7 @@ public class RemoteService extends Service {
                 return false;
             }
             return super.onTransact(code, data, reply, flags);
-        } 
+        }
         @Override
         public void join(IBinder token, String name) throws RemoteException {
             CustomerClient cl = new CustomerClient(token, name);
@@ -94,6 +94,16 @@ public class RemoteService extends Service {
         @Override
         public void unRegisterListener(IOnNewBookArrivedListener listener) throws RemoteException {
             mListenerManager.unRegisterListener(listener);
+        }
+
+        @Override
+        public void linkToDeath(DeathRecipient recipient, int flags) {
+            super.linkToDeath(recipient, flags);
+        }
+
+        @Override
+        public boolean unlinkToDeath(DeathRecipient recipient, int flags) {
+            return super.unlinkToDeath(recipient, flags);
         }
     };
 

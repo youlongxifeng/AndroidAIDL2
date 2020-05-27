@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Student student=new  Person().new Student();
     }
 
+
     ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -69,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
             }
             iBookManager.asBinder().unlinkToDeath(deathRecipient, 0);
             iBookManager = null;
-            // TODO 重新绑定
+            // TODO 重新绑定    重新绑定远程服务
+          bindService(new Intent("com.aidl.youlong.project.service.RemoteService").setPackage("com.aidl.youlong.project.service"),serviceConnection,BIND_AUTO_CREATE);
+
         }
     };
 
