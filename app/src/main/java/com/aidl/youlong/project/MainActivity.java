@@ -18,6 +18,7 @@ import com.aidl.youlong.project.aidl.IOnNewBookArrivedListener;
 import com.aidl.youlong.project.bean.Person;
 import com.aidl.youlong.project.bean.Person.Student;
 import com.aidl.youlong.project.service.RemoteService;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,10 +108,26 @@ public class MainActivity extends AppCompatActivity {
         bindService(new Intent(this, RemoteService.class), serviceConnection, BIND_AUTO_CREATE);
     }
 
+    public void remote2(View view) {
+        bindService(new Intent(this, RemoteService.class), serviceConnection, BIND_AUTO_CREATE);
+    }
+
     /**
      * 解绑启动远程服务
      */
     public void unbind1(View view) {
+         try {
+            if (iBookManager != null && iBookManager.asBinder().isBinderAlive()) {
+                iBookManager.unRegisterListener(iOnNewBookArrivedListener);
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        unbindService(serviceConnection);
+        showSnackBar("tankuang",false);
+    }
+
+    public void unbind2(View view) {
         try {
             if (iBookManager != null && iBookManager.asBinder().isBinderAlive()) {
                 iBookManager.unRegisterListener(iOnNewBookArrivedListener);
@@ -121,6 +138,13 @@ public class MainActivity extends AppCompatActivity {
         unbindService(serviceConnection);
     }
 
+
+
+    public void showSnackBar(String message, boolean isLong) {
+
+        View view = getWindow().getDecorView().findViewById(android.R.id.content);
+        Snackbar.make(view, message, Snackbar.LENGTH_LONG).show();
+    }
     /**
      * 调用远程服务的书籍列表
      */
