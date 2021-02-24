@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Person person=new Person();
         Student student=new  Person().new Student();
         //我新增了一个分支
+        //合并分支
 
     }
 
