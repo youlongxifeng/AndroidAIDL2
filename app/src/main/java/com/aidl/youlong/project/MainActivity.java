@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Student student=new  Person().new Student();
         //我新增了一个分支
         //合并分支
+        Log.i("YYY","开始测试合并分支");
 
     }
 
